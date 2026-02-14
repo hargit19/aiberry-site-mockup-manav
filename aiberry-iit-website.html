@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiberry-IIT | Vision & Strategy 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4A90E2;
+            --primary-orange: #FF8C42;
+            --primary-purple: #8B7FD9;
+            --dark-bg: #0A1628;
+            --card-bg: rgba(20, 35, 60, 0.6);
+            --text-white: #FFFFFF;
+            --text-gray: #A8B2D1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #1a2942 50%, #2d1f3d 100%);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(74, 144, 226, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 144, 226, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .vision-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary-orange);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--dark-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark-bg);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .code-card {
+            position: absolute;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .code-card.card1 {
+            top: 50px;
+            left: 50px;
+            animation-delay: 0s;
+        }
+
+        .code-card.card2 {
+            bottom: 100px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        .icon-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .icon-brain {
+            top: 120px;
+            left: 150px;
+            background: rgba(74, 144, 226, 0.2);
+            border: 2px solid var(--primary-blue);
+            animation-delay: 1s;
+        }
+
+        .icon-code {
+            top: 50px;
+            right: 50px;
+            background: rgba(139, 127, 217, 0.2);
+            border: 2px solid var(--primary-purple);
+            animation-delay: 0.5s;
+        }
+
+        .icon-org {
+            bottom: 150px;
+            right: 100px;
+            background: rgba(255, 140, 66, 0.2);
+            border: 2px solid var(--primary-orange);
+            animation-delay: 1.5s;
+        }
+
+        .icon-handshake {
+            bottom: 80px;
+            right: 200px;
+            background: rgba(255, 140, 66, 0.2);
+            border: 2px solid var(--primary-orange);
+            animation-delay: 2.5s;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(74, 144, 226, 0.2);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Business Model Cards */
+        .business-model {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .model-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+
+        .model-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            opacity: 0.1;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
+
+        .model-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .model-card:nth-child(1) .model-icon {
+            background: rgba(74, 144, 226, 0.2);
+        }
+
+        .model-card:nth-child(2) .model-icon {
+            background: rgba(139, 127, 217, 0.2);
+        }
+
+        .model-card:nth-child(3) .model-icon {
+            background: rgba(255, 140, 66, 0.2);
+        }
+
+        .model-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: rgba(255, 140, 66, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Challenge Timeline */
+        .challenge-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--primary-orange));
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .timeline-step {
+            text-align: center;
+            flex: 1;
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .timeline-step:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-step:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-step:nth-child(3) { animation-delay: 0.6s; }
+
+        .step-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            border: 3px solid;
+            background: var(--dark-bg);
+        }
+
+        .timeline-step:nth-child(1) .step-icon {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .timeline-step:nth-child(2) .step-icon {
+            border-color: var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        .timeline-step:nth-child(3) .step-icon {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Learning Points */
+        .learning-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .learning-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .learning-card:nth-child(1) {
+            border-color: #ff4444;
+        }
+
+        .learning-card:nth-child(2) {
+            border-color: #44ff88;
+        }
+
+        .learning-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .learning-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Implementation Section */
+        .implementation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .impl-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .impl-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .impl-list {
+            list-style: none;
+        }
+
+        .impl-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .impl-list li:last-child {
+            border-bottom: none;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .culture-item {
+            background: rgba(255, 140, 66, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .culture-item h4 {
+            margin: 1rem 0 0.5rem;
+        }
+
+        .culture-item p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .outcome-list {
+            list-style: none;
+        }
+
+        .outcome-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+        }
+
+        .outcome-list li:last-child {
+            border-bottom: none;
+        }
+
+        .outcome-list h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .outcome-list p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-orange));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: rgba(255, 140, 66, 0.2);
+            border-radius: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Navigation Breadcrumb */
+        .nav-structure {
+            background: rgba(10, 22, 40, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            background: rgba(74, 144, 226, 0.2);
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover {
+            background: var(--primary-blue);
+        }
+
+        .nav-item.active {
+            background: var(--primary-orange);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-visual {
+                width: 100%;
+                height: 300px;
+                margin-top: 2rem;
+            }
+
+            .timeline-steps {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .timeline-steps::before {
+                display: none;
+            }
+
+            .implementation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .business-model,
+            .services-grid,
+            .learning-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">🎓 Aiberry-<span>IIT</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#model">Our Model</a></li>
+            <li><a href="#challenge">Challenge</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="vision-badge">🎯 VISION & STRATEGY 2026</div>
+            <h1>
+                Building Products.<br>
+                Serving Clients.<br>
+                <span class="highlight">Growing via Execution.</span>
+            </h1>
+            <p>We are redefining student entrepreneurship through a dual business model that combines real-world client service with autonomous product innovation.</p>
+            <div class="cta-buttons">
+                <a href="#model" class="btn btn-primary">View Our Model →</a>
+                <a href="#challenge" class="btn btn-secondary">Join the Challenge ⚡</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-card card1">
+                <div>class AgencyAI {</div>
+                <div>  constructor() {</div>
+                <div>    this.clients = [];</div>
+                <div>  }</div>
+                <div>}</div>
+            </div>
+            <div class="code-card card2">
+                <div>$ initializing_growth_engine...</div>
+                <div>$ status: ready</div>
+            </div>
+            <div class="icon-circle icon-brain">🧠</div>
+            <div class="icon-circle icon-code">&lt;/&gt;</div>
+            <div class="icon-circle icon-org">🏛️</div>
+            <div class="icon-circle icon-handshake">🤝</div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="model">
+        <div class="section-header reveal">
+            <div class="section-badge">📊 CORE STRATEGY</div>
+            <h2>Our Dual Business Model</h2>
+            <p>We balance innovation with execution by operating two distinct yet complementary streams of value creation.</p>
+        </div>
+        <div class="business-model">
+            <div class="model-card reveal" data-number="01">
+                <div class="model-icon">🚀</div>
+                <h3>Build Our Own Products</h3>
+                <p>Team members are empowered to act as founders. We develop, launch, and iterate on our own innovative product ideas, fostering a culture of ownership and creativity from day one.</p>
+            </div>
+            <div class="model-card reveal" data-number="02">
+                <div class="model-icon">🌍</div>
+                <h3>Serve Global Clients</h3>
+                <p>We deliver high-quality AI development and consulting services. Clients are sourced from global freelancing platforms, giving students real-world exposure to international market standards.</p>
+            </div>
+            <div class="model-card reveal" data-number="03">
+                <div class="model-icon">💰</div>
+                <h3>"Pay What You Want"</h3>
+                <p>A radical approach to trust-building. We prioritize value delivery and client satisfaction by allowing clients to determine the payment amount based on the perceived fairness and quality of our work.</p>
+                <div class="feature-tag">✨ Fairness-First Pricing Model</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section id="challenge" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <div class="section-badge">🎓 LEARNING PHILOSOPHY</div>
+            <h2>The "My First Product" <span style="color: var(--primary-orange);">Challenge</span></h2>
+            <p>We believe in learning by doing. Every new member must conceive, build, and market a functional product within their first three weeks.</p>
+        </div>
+
+        <div class="challenge-timeline">
+            <div class="timeline-steps">
+                <div class="timeline-step">
+                    <div class="step-icon">&lt;/&gt;</div>
+                    <div class="step-label">WEEK 01</div>
+                    <div class="step-title">Build</div>
+                    <p class="step-description">Develop an MVP using modern frameworks. No lengthy specs—just ship code that works.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-icon">🚀</div>
+                    <div class="step-label">WEEK 02</div>
+                    <div class="step-title">Launch</div>
+                    <p class="step-description">Deploy to production. Experience the pressure and thrill of releasing to the public web.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-icon">📢</div>
+                    <div class="step-label">WEEK 03</div>
+                    <div class="step-title">Promote</div>
+                    <p class="step-description">Find your first user. Learn the harsh reality that "build it and they will come" is a lie.</p>
+                </div>
+            </div>
+
+            <div class="learning-points">
+                <div class="learning-card reveal">
+                    <h4><span style="font-size: 2rem;">⚠️</span> Learning the Reality of Success</h4>
+                    <p>Most first products fail, and that's the point. We teach resilience and the importance of market validation over premature perfection.</p>
+                </div>
+                <div class="learning-card reveal">
+                    <h4><span style="font-size: 2rem;">🌱</span> Fostering Autonomy & Future Skills</h4>
+                    <p>Members gain full ownership of their stack, design, and roadmap, preparing them for leadership roles in the tech industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Section -->
+    <section>
+        <div class="section-header reveal">
+            <h2>Implementation & Outcomes</h2>
+            <p>Translating our vision into a tangible, high-performance web experience.</p>
+        </div>
+
+        <div class="implementation-grid">
+            <div class="impl-card reveal">
+                <h3><span style="color: var(--primary-blue);">👆</span> Interactive Elements</h3>
+                <ul class="impl-list">
+                    <li><span style="color: var(--primary-blue);">☰</span> 3-Step Animated Timeline</li>
+                    <li><span style="color: var(--primary-blue);">🎴</span> Hover-based Feature Cards</li>
+                    <li><span style="color: var(--primary-blue);">🌐</span> 3D Globe for Global Clients</li>
+                    <li><span style="color: var(--primary-blue);">📜</span> Scroll-triggered Fade-ins</li>
+                </ul>
+            </div>
+
+            <div class="impl-card reveal">
+                <h3><span style="color: var(--primary-orange);">💬</span> Culture Messaging</h3>
+                <div class="culture-grid">
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">🔨</div>
+                        <h4>Build > Theory</h4>
+                        <p>Action first</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">⚡</div>
+                        <h4>Launch Fast</h4>
+                        <p>Speed wins</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">🔍</div>
+                        <h4>Reality Check</h4>
+                        <p>Market truth</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">👑</div>
+                        <h4>Ownership</h4>
+                        <p>End-to-end</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impl-card reveal">
+                <h3><span style="color: #44ff88;">✓</span> Expected Outcome</h3>
+                <ul class="outcome-list">
+                    <li>
+                        <h4>✨ Premium Aesthetics</h4>
+                        <p>A clean, SaaS-style layout that rivals top agency sites, building instant trust.</p>
+                    </li>
+                    <li>
+                        <h4>🎯 Clear Value Prop</h4>
+                        <p>Instantly communicates the unique "Student-Run, Dual-Model" advantage.</p>
+                    </li>
+                    <li>
+                        <h4>🔥 Differentiation</h4>
+                        <p>Highlights "Pay What You Want" to disrupt traditional agency hesitation.</p>
+                    </li>
+                    <li>
+                        <h4>🎨 Brand Alignment</h4>
+                        <p>Fully aligns with the AgencyAI design system: modern, tech-forward, and bold.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-structure reveal">
+            <span style="color: var(--primary-purple); font-size: 1.5rem;">🏛️</span>
+            <span style="font-weight: bold; margin-right: 1rem;">Navigation Structure</span>
+            <a href="#home" class="nav-item">🏠 Home</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#model" class="nav-item">Our Model</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#growth" class="nav-item">Growth</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#challenge" class="nav-item">Challenge</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#services" class="nav-item">Services</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#contact" class="nav-item active">Contact</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <h2>Our Key Services</h2>
+            <p>Comprehensive technical solutions driven by student innovation.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">⚙️</div>
+                <h3>Workflow Automation</h3>
+                <p>Streamlining business operations with n8n, Zapier, Make.com, and custom scripting to reduce manual effort.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">💻</div>
+                <h3>Full Stack Web Solutions</h3>
+                <p>End-to-end development of robust web applications and digital platforms using modern frameworks.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔧</div>
+                <h3>Tool Setup & Guidance</h3>
+                <p>Expert implementation and guidance for Claude Code, Claude Cowork, Moltbot, and other AI agents.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Check on load
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Floating animation for hero visual elements
+        const floatingElements = document.querySelectorAll('.icon-circle, .code-card');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+</html>
