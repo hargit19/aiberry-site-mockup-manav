@@ -58,14 +58,17 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    display: flex;
+    align-items: center;
+}
 
-        .logo span {
-            color: var(--primary-orange);
-        }
-
+.logo img {
+    height: 40px;   /* adjust size here */
+    width: auto;
+}
+.logo img {
+    height: 70px;
+}
         nav ul {
             display: flex;
             list-style: none;
@@ -110,7 +113,7 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 2.7rem;
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -752,7 +755,9 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">🎓 Aiberry-<span>IIT</span></div>
+        <div class="logo">
+            <img src="logo.png" alt="Aiberry IIT Logo">
+        </div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#model">Our Model</a></li>
@@ -767,11 +772,14 @@
         <div class="hero-content">
             <div class="vision-badge">🎯 VISION & STRATEGY 2026</div>
             <h1>
-                Building Products.<br>
-                Serving Clients.<br>
-                <span class="highlight">Growing via Execution.</span>
-            </h1>
-            <p>We are redefining student entrepreneurship through a dual business model that combines real-world client service with autonomous product innovation.</p>
+    Building Intelligent Systems.<br>
+    Automating Real Businesses.<br>
+    <span class="highlight">Delivering AI That Works.</span>
+</h1>
+            <p>
+We are an IIT-based AI studio delivering workflow automation, full-stack 
+solutions, and AI agent implementation for modern businesses.
+</p>
             <div class="cta-buttons">
                 <a href="#model" class="btn btn-primary">View Our Model →</a>
                 <a href="#challenge" class="btn btn-secondary">Join the Challenge ⚡</a>
@@ -793,6 +801,33 @@
             <div class="icon-circle icon-code">&lt;/&gt;</div>
             <div class="icon-circle icon-org">🏛️</div>
             <div class="icon-circle icon-handshake">🤝</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+
+    <section id="services" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <h2>Our Key Services</h2>
+            <p>Comprehensive technical solutions driven by student innovation.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">⚙️</div>
+                <h3>Workflow Automation</h3>
+                <p>Streamlining business operations with n8n, Zapier, Make.com, and custom scripting to reduce manual effort.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">💻</div>
+                <h3>Full Stack Web Solutions</h3>
+                <p>End-to-end development of robust web applications and digital platforms using modern frameworks.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔧</div>
+                <h3>Tool Setup & Guidance</h3>
+                <p>Expert implementation and guidance for Claude Code, Claude Cowork, Moltbot, and other AI agents.</p>
+            </div>
         </div>
     </section>
 
@@ -950,31 +985,8 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" style="background: rgba(10, 22, 40, 0.3);">
-        <div class="section-header reveal">
-            <h2>Our Key Services</h2>
-            <p>Comprehensive technical solutions driven by student innovation.</p>
-        </div>
 
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <div class="service-icon">⚙️</div>
-                <h3>Workflow Automation</h3>
-                <p>Streamlining business operations with n8n, Zapier, Make.com, and custom scripting to reduce manual effort.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon">💻</div>
-                <h3>Full Stack Web Solutions</h3>
-                <p>End-to-end development of robust web applications and digital platforms using modern frameworks.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon">🔧</div>
-                <h3>Tool Setup & Guidance</h3>
-                <p>Expert implementation and guidance for Claude Code, Claude Cowork, Moltbot, and other AI agents.</p>
-            </div>
-        </div>
-    </section>
+    
 
     <script>
         // Scroll reveal animation
