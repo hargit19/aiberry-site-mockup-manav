@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiberry-IIT | AI Newsletter Intelligence Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4A90E2;
+            --primary-orange: #FF8C42;
+            --primary-purple: #8B7FD9;
+            --dark-bg: #0A1628;
+            --card-bg: rgba(20, 35, 60, 0.6);
+            --text-white: #FFFFFF;
+            --text-gray: #A8B2D1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #1a2942 50%, #2d1f3d 100%);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(74, 144, 226, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 144, 226, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .vision-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.7rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary-orange);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--dark-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark-bg);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .code-card {
+            position: absolute;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .code-card.card1 {
+            top: 50px;
+            left: 50px;
+            animation-delay: 0s;
+        }
+
+        .code-card.card2 {
+            bottom: 100px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        .icon-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .icon-brain {
+            top: 120px;
+            left: 150px;
+            background: rgba(74, 144, 226, 0.2);
+            border: 2px solid var(--primary-blue);
+            animation-delay: 1s;
+        }
+
+        .icon-code {
+            top: 50px;
+            right: 50px;
+            background: rgba(139, 127, 217, 0.2);
+            border: 2px solid var(--primary-purple);
+            animation-delay: 0.5s;
+        }
+
+        .icon-org {
+            bottom: 150px;
+            right: 100px;
+            background: rgba(255, 140, 66, 0.2);
+            border: 2px solid var(--primary-orange);
+            animation-delay: 1.5s;
+        }
+
+        .icon-handshake {
+            bottom: 80px;
+            right: 200px;
+            background: rgba(255, 140, 66, 0.2);
+            border: 2px solid var(--primary-orange);
+            animation-delay: 2.5s;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(74, 144, 226, 0.2);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Business Model Cards */
+        .business-model {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .model-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+
+        .model-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            opacity: 0.1;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
+
+        .model-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .model-card:nth-child(1) .model-icon { background: rgba(74, 144, 226, 0.2); }
+        .model-card:nth-child(2) .model-icon { background: rgba(139, 127, 217, 0.2); }
+        .model-card:nth-child(3) .model-icon { background: rgba(255, 140, 66, 0.2); }
+        .model-card:nth-child(4) .model-icon { background: rgba(68, 255, 136, 0.15); }
+        .model-card:nth-child(5) .model-icon { background: rgba(255, 140, 66, 0.2); }
+
+        .model-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: rgba(255, 140, 66, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Challenge Timeline */
+        .challenge-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--primary-orange));
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .timeline-step {
+            text-align: center;
+            flex: 1;
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .timeline-step:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-step:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-step:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-step:nth-child(4) { animation-delay: 0.8s; }
+
+        .step-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            border: 3px solid;
+            background: var(--dark-bg);
+        }
+
+        .timeline-step:nth-child(1) .step-icon { border-color: var(--primary-blue); color: var(--primary-blue); }
+        .timeline-step:nth-child(2) .step-icon { border-color: var(--primary-purple); color: var(--primary-purple); }
+        .timeline-step:nth-child(3) .step-icon { border-color: var(--primary-orange); color: var(--primary-orange); }
+        .timeline-step:nth-child(4) .step-icon { border-color: #44ff88; color: #44ff88; }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            max-width: 230px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Learning Points */
+        .learning-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .learning-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .learning-card:nth-child(1) { border-color: #ff4444; }
+        .learning-card:nth-child(2) { border-color: #44ff88; }
+
+        .learning-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .learning-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Implementation Section */
+        .implementation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .impl-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .impl-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .impl-list {
+            list-style: none;
+        }
+
+        .impl-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .impl-list li:last-child { border-bottom: none; }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .culture-item {
+            background: rgba(255, 140, 66, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .culture-item h4 { margin: 1rem 0 0.5rem; }
+        .culture-item p { font-size: 0.9rem; color: var(--text-gray); }
+
+        .outcome-list { list-style: none; }
+
+        .outcome-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+        }
+
+        .outcome-list li:last-child { border-bottom: none; }
+        .outcome-list h4 { margin-bottom: 0.5rem; }
+        .outcome-list p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-orange));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover { transform: translateY(-10px); }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: rgba(255, 140, 66, 0.2);
+            border-radius: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Before/After Section */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ba-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .ba-card.before { border-color: rgba(255, 68, 68, 0.4); }
+        .ba-card.after { border-color: rgba(68, 255, 136, 0.4); }
+
+        .ba-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .ba-card.before .ba-label { color: #ff4444; }
+        .ba-card.after .ba-label { color: #44ff88; }
+
+        .ba-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ba-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.15);
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .ba-item:last-of-type { border-bottom: none; }
+
+        .time-badge {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .ba-card.before .time-badge { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
+        .ba-card.after .time-badge { background: rgba(68, 255, 136, 0.2); color: #44ff88; }
+
+        /* Nav Structure */
+        .nav-structure {
+            background: rgba(10, 22, 40, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            background: rgba(74, 144, 226, 0.2);
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover { background: var(--primary-blue); }
+        .nav-item.active { background: var(--primary-orange); }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.5s;
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--primary-orange);
+            position: relative;
+        }
+
+        .pricing-card.recommended::after {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-orange);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover { transform: translateY(-10px); }
+
+        .pricing-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+        .pricing-card .price { font-size: 2.5rem; color: var(--primary-orange); font-weight: 800; margin-bottom: 2rem; }
+
+        .pricing-features { list-style: none; text-align: left; }
+
+        .pricing-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.15);
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li:last-child { border-bottom: none; }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 100px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-visual { width: 100%; height: 300px; margin-top: 2rem; }
+            .timeline-steps { flex-direction: column; gap: 3rem; }
+            .timeline-steps::before { display: none; }
+            .implementation-grid { grid-template-columns: 1fr; }
+            nav ul { flex-direction: column; gap: 1rem; }
+            .business-model, .services-grid, .learning-points, .before-after { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Aiberry IIT Logo">
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="vision-badge">📬 AI NEWSLETTER INTELLIGENCE ENGINE</div>
+            <h1>
+                Turn 2 Hours of Newsletters<br>
+                Into 15 Minutes of<br>
+                <span class="highlight">Pure Intelligence.</span>
+            </h1>
+            <p>
+                AI-powered inbox compression that clusters overlapping stories and delivers one clean, structured daily digest. Stop reading the same story 10 times.
+            </p>
+            <div class="cta-buttons">
+                <a href="#how-it-works" class="btn btn-primary">Connect Gmail — Get Free Digest →</a>
+                <a href="#features" class="btn btn-secondary">See How It Works ⚡</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-card card1">
+                <div>📰 OpenAI Launches New Model</div>
+                <div style="color: #4A90E2; margin-top: 0.5rem;">• TechCrunch</div>
+                <div style="color: #4A90E2;">• The Verge</div>
+                <div style="color: #4A90E2;">• Lenny's Newsletter</div>
+            </div>
+            <div class="code-card card2">
+                <div>$ clustering_stories...</div>
+                <div>$ duplicates_removed: 47</div>
+                <div>$ digest: ready ✅</div>
+            </div>
+            <div class="icon-circle icon-brain">📧</div>
+            <div class="icon-circle icon-code">🧠</div>
+            <div class="icon-circle icon-org">⚡</div>
+            <div class="icon-circle icon-handshake">📊</div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <div class="section-badge">⚠️ THE PROBLEM</div>
+            <h2>Information Overload Is Stealing Your Time.</h2>
+            <p>You're not missing information — you're missing clarity. The same story, repeated across 10 newsletters, consuming hours you don't have.</p>
+        </div>
+
+        <div class="learning-points">
+            <div class="learning-card reveal">
+                <h4><span style="font-size: 2rem;">😤</span> The Daily Reality</h4>
+                <p>10+ newsletters hit your inbox daily. Each carries 8–12 articles. The same trending story appears across every source. That's 100+ minutes wasted on repetition — every single day.</p>
+            </div>
+            <div class="learning-card reveal">
+                <h4><span style="font-size: 2rem;">💡</span> What You Actually Need</h4>
+                <p>A single, structured view of what matters — clustered by topic, sourced from multiple publications, delivered in minutes. Intelligence, not volume.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before / After Section -->
+    <section id="comparison">
+        <div class="section-header reveal">
+            <div class="section-badge">🔄 BEFORE VS AFTER</div>
+            <h2>From <span style="color: #ff4444;">Chaos</span> to <span style="color: #44ff88;">Clarity</span></h2>
+            <p>See exactly how our AI transforms your inbox experience.</p>
+        </div>
+
+        <div class="before-after reveal">
+            <div class="ba-card before">
+                <div class="ba-label">⚠️ Before — Your Inbox Today</div>
+                <h3>4 Emails. Same Story.</h3>
+                <div class="ba-item">📰 TechCrunch: OpenAI launches new model</div>
+                <div class="ba-item">📰 The Verge: OpenAI launches new model</div>
+                <div class="ba-item">📰 Lenny's Newsletter: OpenAI update</div>
+                <div class="ba-item">📰 Business Insider: OpenAI's new AI</div>
+                <div class="time-badge">⏱️ 80–120 minutes wasted</div>
+            </div>
+            <div class="ba-card after">
+                <div class="ba-label">✅ After — Your Smart Digest</div>
+                <h3>1 Topic. All Sources.</h3>
+                <div class="ba-item" style="color: white; font-weight: 600;">📰 OpenAI Launches New Model</div>
+                <div class="ba-item">• TechCrunch &nbsp;• The Verge</div>
+                <div class="ba-item">• Lenny's Newsletter &nbsp;• Business Insider</div>
+                <div class="ba-item" style="color: #44ff88;">AI Summary: Key insight in 2 sentences.</div>
+                <div class="time-badge">⚡ 10–15 minutes. Done.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <div class="section-badge">🛠️ CORE FEATURES</div>
+            <h2>Built for Intelligent Professionals</h2>
+            <p>Five powerful features that transform how you consume information.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">🗂️</div>
+                <h3>Smart Topic Clustering</h3>
+                <p>Detects similar stories across multiple newsletters and groups them under a single topic — eliminating redundancy automatically.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔍</div>
+                <h3>Source Transparency</h3>
+                <p>See every source covering the story. No hidden filtering, no black box — full visibility into your information landscape.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">✍️</div>
+                <h3>AI-Powered Summaries</h3>
+                <p>Optional short summaries let you grasp the core idea in seconds, with links to dive deeper when it matters.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🎯</div>
+                <h3>Personalized Filtering</h3>
+                <p>Choose your topics: AI, Startups, Tech, Finance, Policy. Your digest, tailored to what actually matters to you.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔒</div>
+                <h3>Privacy-First Architecture</h3>
+                <p>OAuth-based Gmail access. No data resale. Encrypted tokens. Read-only access. Your inbox stays yours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="section-header reveal">
+            <div class="section-badge">⚙️ POWERED BY AI</div>
+            <h2>How It <span style="color: var(--primary-orange);">Works</span></h2>
+            <p>A seamless 4-step process from your inbox to your daily intelligence brief.</p>
+        </div>
+
+        <div class="challenge-timeline">
+            <div class="timeline-steps">
+                <div class="timeline-step">
+                    <div class="step-icon">🔐</div>
+                    <div class="step-label">STEP 01</div>
+                    <div class="step-title">Connect</div>
+                    <p class="step-description">Authenticate via Google OAuth. No passwords stored. Secure and private by design.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-icon">🤖</div>
+                    <div class="step-label">STEP 02</div>
+                    <div class="step-title">Extract</div>
+                    <p class="step-description">AI extracts articles, normalizes titles, and identifies overlapping stories across all sources.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-icon">🗂️</div>
+                    <div class="step-label">STEP 03</div>
+                    <div class="step-title">Cluster</div>
+                    <p class="step-description">Similar stories are grouped by topic. Duplication removed. Signal isolated from noise.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-icon">📬</div>
+                    <div class="step-label">STEP 04</div>
+                    <div class="step-title">Deliver</div>
+                    <p class="step-description">Your structured daily digest arrives — topic-grouped, multi-sourced, and minimal.</p>
+                </div>
+            </div>
+
+            <div class="learning-points">
+                <div class="learning-card reveal">
+                    <h4><span style="font-size: 2rem;">⏳</span> Your Time is the Product</h4>
+                    <p>10 newsletters × 8 articles × 10 minutes = 800 minutes per week. Our system compresses this to under 75 minutes. That's 725 minutes — back in your hands every week.</p>
+                </div>
+                <div class="learning-card reveal">
+                    <h4><span style="font-size: 2rem;">👤</span> Who Is This For?</h4>
+                    <p>Startup founders, investors, AI researchers, product managers, consultants, and knowledge workers — anyone overwhelmed by the relentless pace of newsletters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" style="background: rgba(10, 22, 40, 0.3);">
+        <div class="section-header reveal">
+            <div class="section-badge">💳 PRICING</div>
+            <h2>Simple Pricing for Intelligent Consumption</h2>
+            <p>Start free. Scale when you need more intelligence.</p>
+        </div>
+
+        <div class="pricing-grid reveal">
+            <div class="pricing-card">
+                <h3>Free</h3>
+                <div class="price">$0</div>
+                <ul class="pricing-features">
+                    <li>✅ Up to 5 newsletters</li>
+                    <li>✅ Daily digest</li>
+                    <li>✅ Basic clustering</li>
+                    <li style="color: rgba(168,178,209,0.4);">🔒 AI summaries</li>
+                    <li style="color: rgba(168,178,209,0.4);">🔒 Custom filters</li>
+                </ul>
+            </div>
+            <div class="pricing-card recommended">
+                <h3>Pro</h3>
+                <div class="price">$9/mo</div>
+                <ul class="pricing-features">
+                    <li>✅ Unlimited newsletters</li>
+                    <li>✅ Advanced clustering</li>
+                    <li>✅ AI-powered summaries</li>
+                    <li>✅ Custom topic filters</li>
+                    <li>✅ Weekly insights report</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <ul class="pricing-features">
+                    <li>✅ Team dashboard</li>
+                    <li>✅ Shared intelligence feed</li>
+                    <li>✅ Admin controls</li>
+                    <li>✅ Priority support</li>
+                    <li>✅ GDPR compliance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation / Trust Section -->
+    <section id="trust">
+        <div class="section-header reveal">
+            <h2>Your Inbox. Your Data. Your Control.</h2>
+            <p>Security and trust are not afterthoughts — they're foundational to everything we build.</p>
+        </div>
+
+        <div class="implementation-grid">
+            <div class="impl-card reveal">
+                <h3><span style="color: var(--primary-blue);">🔐</span> Security Guarantees</h3>
+                <ul class="impl-list">
+                    <li><span style="color: var(--primary-blue);">✓</span> OAuth-based Gmail access only</li>
+                    <li><span style="color: var(--primary-blue);">✓</span> No full email content stored</li>
+                    <li><span style="color: var(--primary-blue);">✓</span> No data resale, ever</li>
+                    <li><span style="color: var(--primary-blue);">✓</span> Disconnect anytime, instantly</li>
+                    <li><span style="color: var(--primary-blue);">✓</span> All access encrypted end-to-end</li>
+                </ul>
+            </div>
+
+            <div class="impl-card reveal">
+                <h3><span style="color: var(--primary-orange);">🎯</span> Built For You</h3>
+                <div class="culture-grid">
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">🚀</div>
+                        <h4>Founders</h4>
+                        <p>Stay ahead</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">📈</div>
+                        <h4>Investors</h4>
+                        <p>See signals</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">🧪</div>
+                        <h4>Researchers</h4>
+                        <p>Track fields</p>
+                    </div>
+                    <div class="culture-item">
+                        <div style="font-size: 2rem;">🧠</div>
+                        <h4>PMs & Leads</h4>
+                        <p>Read smarter</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impl-card reveal">
+                <h3><span style="color: #44ff88;">✓</span> Why Aiberry-IIT</h3>
+                <ul class="outcome-list">
+                    <li>
+                        <h4>🏛️ IIT-Based AI Studio</h4>
+                        <p>Built by a team of engineers from IIT, applying rigorous technical standards to real problems.</p>
+                    </li>
+                    <li>
+                        <h4>⚡ Practical Automation</h4>
+                        <p>We build systems that create measurable impact — not demos, not prototypes.</p>
+                    </li>
+                    <li>
+                        <h4>🌍 Global Standards</h4>
+                        <p>Exposed to international market demands, we build for quality users everywhere.</p>
+                    </li>
+                    <li>
+                        <h4>🔥 Delivering AI That Works</h4>
+                        <p>Our tagline isn't marketing copy — it's our operating philosophy.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-structure reveal">
+            <span style="color: var(--primary-purple); font-size: 1.5rem;">🏛️</span>
+            <span style="font-weight: bold; margin-right: 1rem;">Navigation Structure</span>
+            <a href="#home" class="nav-item">🏠 Home</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#problem" class="nav-item">Problem</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#features" class="nav-item">Features</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#how-it-works" class="nav-item">How It Works</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#pricing" class="nav-item">Pricing</a>
+            <span style="color: var(--text-gray);">›</span>
+            <a href="#contact" class="nav-item active">Contact</a>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contact" style="background: rgba(10, 22, 40, 0.3); text-align: center;">
+        <div class="section-header reveal">
+            <h2 style="font-size: 3.5rem;">Stop Reading Newsletters.<br><span style="color: var(--primary-orange);">Start Reading Intelligence.</span></h2>
+            <p style="margin-bottom: 3rem;">Connect your Gmail in 30 seconds. Your first smart digest is free.</p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="#" class="btn btn-primary">Connect Gmail — Start Free →</a>
+                <a href="#comparison" class="btn btn-secondary">See Sample Digest 📬</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; color: var(--text-gray); font-size: 0.95rem;">
+            <strong style="color: white;">Aiberry-IIT</strong> &nbsp;|&nbsp; Building Intelligent Systems. Automating Real Businesses. Delivering AI That Works.
+        </div>
+    </section>
+
+    <script>
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const floatingElements = document.querySelectorAll('.icon-circle, .code-card');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+</html>
